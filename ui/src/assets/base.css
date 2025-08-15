@@ -1,12 +1,16 @@
 :root {
   --primary: #003566;
   --dark-primary: #001d3d;
+  --primary-light: #e2f1ff;
+  --primary-light-text: #6db9ff;
+  --primary-text: #2f3337;
+
   --cta: #ffd60a;
   --dark-cta: #ffc300;
   --disabled-cta: rgba(255, 214, 10, 0.5);
   --warning: #ff6d6d;
-
-  --med-gray: rgba(255, 255, 255, 0.05);
+  --light-secondary: #cccdd2;
+  --dark-secondary: #2a2a2f;
 }
 
 *,

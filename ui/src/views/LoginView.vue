@@ -20,10 +20,10 @@ async function login() {
       password: password.value,
     })
     if (error) throw error
-    console.log(data)
+    console.log('Login Log: ', data)
     router.push('/dashboard')
   } catch (error) {
-    errorMessage.value = 'Login failed. Please try again'
+    errorMessage.value = 'Login failed. Please try again.'
   } finally {
     isLoading.value = false
   }

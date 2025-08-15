@@ -28,7 +28,7 @@ async function createUser() {
     console.log(data)
     router.push('/login')
   } catch (error) {
-    errorMessage.value = 'Login failed. Please try again'
+    errorMessage.value = 'Sign up. Please try again.'
   } finally {
     isLoading.value = false
   }
