@@ -1,0 +1,1 @@
+spring:  application:    name: My Vocab Vault  cloud:    aws:      dynamodb:        region: us-east-1      credentials:        access-key: ${AWS_ACCESS_KEY}        secret-key: ${AWS_SECRET_KEY}
