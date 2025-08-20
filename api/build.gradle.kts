@@ -30,6 +30,8 @@ dependencies {
 	implementation(platform("io.awspring.cloud:spring-cloud-aws-dependencies:3.4.0"))
 	implementation("io.awspring.cloud:spring-cloud-aws-starter")
 	implementation("io.awspring.cloud:spring-cloud-aws-starter-dynamodb")
+	implementation ("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
 }
 
 kotlin {

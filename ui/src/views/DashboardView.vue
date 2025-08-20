@@ -23,8 +23,8 @@ const newVocabWord = ref<string>('')
       <Navigation />
       <input type="text" />
       <WordOfTheDay />
-      <!-- <RouterLink to="/newPage">Next</RouterLink>
-      <button @click="signOut">Sign out</button> -->
+      <!-- <RouterLink to="/newPage">Next</RouterLink> -->
+      <button @click="signOut">Sign out</button>
     </main>
   </div>
 </template>
