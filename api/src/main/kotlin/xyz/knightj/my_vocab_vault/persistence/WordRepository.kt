@@ -1,0 +1,1 @@
+package xyz.knightj.my_vocab_vault.persistenceimport org.springframework.data.repository.CrudRepositoryimport xyz.knightj.my_vocab_vault.models.Wordinterface WordRepository : CrudRepository<Word, String> {    fun findByUserId(userId: String): List<Word>}

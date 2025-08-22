@@ -1,1 +1,0 @@
-package xyz.knightj.my_vocab_vaultfun interface Validator<T> {    fun validate(input: T)}class HeaderValidator: Validator<Map<String, String>> {    override fun validate(input: Map<String, String>) {    }}

@@ -1,0 +1,1 @@
+package xyz.knightj.my_vocab_vault.utilsimport org.springframework.security.core.Authenticationimport org.springframework.security.core.context.SecurityContextHolderobject UserUtils {    fun getCurrentUserId(): String {        val authentication: Authentication = SecurityContextHolder.getContext().authentication        return authentication.name    }}
