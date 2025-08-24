@@ -1,68 +1,62 @@
 <script setup lang="ts">
 import FooterNavigation from '@/components/common/FooterNavigation.vue'
 import Logo from '@/components/common/Logo.vue'
+import SearchBar from '@/components/SearchBar.vue'
 import Words from '@/components/Words.vue'
+import { useFilteredWords } from '@/composables/useFilteredWords'
 import { supabase } from '@/lib/supabaseClient'
 import { useWordStore } from '@/stores/wordsStore'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 const wordStore = useWordStore()
-
-async function signOut() {
-  const { error } = await supabase.auth.signOut()
-}
-const newVocabWord = ref<string>('')
+const isSearchSubmitted = ref(false)
+const searchTerm = ref('')
 
 onMounted(() => {
   wordStore.fetchWords()
-  console.log(wordStore.wordResponse)
 })
+
+const handleSearch = (payload: { isSubmitted: boolean; searchTerm: string }) => {
+  console.log('function update search called: ', payload)
+  isSearchSubmitted.value = payload.isSubmitted
+  searchTerm.value = payload.searchTerm
+}
+
+const mutatedWords = useFilteredWords(
+  computed(() => wordStore.wordResponse.words),
+  searchTerm,
+)
 </script>
 
 <template>
   <div class="container">
-    <Logo />
+    <header>
+      <Logo />
+    </header>
+    <section class="search-bar">
+      <SearchBar @search-submit="handleSearch" />
+    </section>
     <main>
-      <input type="text" />
-
-      <Words :list-of-words="wordStore.wordResponse.words" />
-
-      <!-- <button @click="signOut">Sign out</button> -->
-
-      <FooterNavigation />
+      <Words :list-of-words="mutatedWords" />
     </main>
+    <FooterNavigation />
   </div>
 </template>
 
 <style lang="css" scoped>
 .container {
   padding-top: 2.2rem;
-  overflow-x: hidden;
-}
-
-main {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-input {
-  border: 1px solid var(--light-secondary);
-  width: 85%;
-  align-self: center;
-  border-radius: 16px;
-  background: none;
-  color: var(--dark-secondary);
-  margin-bottom: 3.2rem;
-}
-input:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(0, 53, 102, 0.2);
+main {
+  min-height: 100vh;
 }
 
-.word {
-  margin-bottom: 2.2rem;
+.search-bar {
+  align-self: center;
+  width: 90%;
 }
 
 @media (min-width: 1024px) {

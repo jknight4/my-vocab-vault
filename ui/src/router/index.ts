@@ -1,10 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import SignupView from '@/views/SignupView.vue'
-import LoginView from '@/views/LoginView.vue'
+import SignupView from '@/views/auth/SignupView.vue'
+import LoginView from '@/views/auth/LoginView.vue'
 import DashboardView from '@/views/DashboardView.vue'
 import { supabase } from '@/lib/supabaseClient'
-import NewView from '@/views/NewView.vue'
 import AddWordView from '@/views/AddWordView.vue'
 import { useAuthStore } from '@/stores/authStore'
 
@@ -33,12 +32,6 @@ const router = createRouter({
       path: '/dashboard',
       name: 'dashboard',
       component: DashboardView,
-      meta: { requiresAuth: true },
-    },
-    {
-      path: '/newPage',
-      name: 'new',
-      component: NewView,
       meta: { requiresAuth: true },
     },
     {

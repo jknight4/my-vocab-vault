@@ -22,26 +22,32 @@ defineProps<{
 a {
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
 }
 
 a:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+a:hover > article > h3 {
+  color: var(--dark-cta);
 }
 
 .word-card {
-  border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-
   padding: 1.6rem;
 }
 
 .word-card > h3 {
   text-transform: capitalize;
-  color: var(--dark-primary);
+  color: var(--primary-text);
+  font-weight: 600;
 }
 
 .word-card > p {
-  color: var(--dark-secondary);
+  color: var(--secondary-text);
+  font-weight: 400;
 }
 </style>
