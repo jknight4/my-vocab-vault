@@ -9,7 +9,7 @@
 <style lang="css" scoped>
 header {
   text-align: center;
-  margin-bottom: 1.4rem;
+  margin-bottom: 2.2rem;
 }
 
 h1 {

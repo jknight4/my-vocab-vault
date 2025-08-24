@@ -37,7 +37,7 @@ const mutatedWords = useFilteredWords(
       <SearchBar @search-submit="handleSearch" />
     </section>
     <main>
-      <Words :list-of-words="mutatedWords" />
+      <Words :list-of-words="mutatedWords" :search-word="searchTerm" />
     </main>
     <FooterNavigation />
   </div>

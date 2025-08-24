@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 const searchOption = ref('')
+const searchingInProgress = ref(false)
 
 const emit = defineEmits<{
   searchSubmit: [
@@ -12,6 +13,7 @@ const emit = defineEmits<{
 }>()
 
 function searchSubmitted() {
+  searchingInProgress.value = true
   emit('searchSubmit', {
     isSubmitted: true,
     searchTerm: searchOption.value,
@@ -19,6 +21,17 @@ function searchSubmitted() {
 }
 
 function startedSearching() {
+  searchingInProgress.value = true
+
+  emit('searchSubmit', {
+    isSubmitted: false,
+    searchTerm: searchOption.value,
+  })
+}
+
+function clearSearch() {
+  searchingInProgress.value = false
+  searchOption.value = ''
   emit('searchSubmit', {
     isSubmitted: false,
     searchTerm: searchOption.value,
@@ -37,13 +50,16 @@ function startedSearching() {
         type="text"
         placeholder="Search"
       />
+      <button v-if="searchingInProgress" class="close-btn" @click="clearSearch">
+        <i class="bi bi-x-lg"></i>
+      </button>
     </div>
   </form>
 </template>
 
 <style lang="css" scoped>
 form {
-  margin-bottom: 2.2rem;
+  margin-bottom: 3.2rem;
 }
 
 .search {
@@ -74,7 +90,20 @@ form {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.75);
 }
 
-.bi-search {
+.close-btn {
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.close-btn:hover > .bi-x-lg {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.bi-search,
+.bi-x-lg {
   font-size: 2.8rem;
 }
 
@@ -83,7 +112,8 @@ form {
 }
 
 .search-input::placeholder,
-.bi-search {
+.bi-search,
+.bi-x-lg {
   font-weight: 700;
   color: rgba(0, 0, 0, 0.25);
 }
