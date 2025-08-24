@@ -6,6 +6,7 @@ import DashboardView from '@/views/DashboardView.vue'
 import { supabase } from '@/lib/supabaseClient'
 import NewView from '@/views/NewView.vue'
 import AddWordView from '@/views/AddWordView.vue'
+import { useAuthStore } from '@/stores/authStore'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,19 +15,19 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      meta: { public: true },
+      meta: { notViewableSignedIn: true },
     },
     {
       path: '/signup',
       name: 'signup',
       component: SignupView,
-      meta: { public: true },
+      meta: { notViewableSignedIn: true },
     },
     {
       path: '/login',
       name: 'login',
       component: LoginView,
-      meta: { public: true },
+      meta: { notViewableSignedIn: true },
     },
     {
       path: '/dashboard',
@@ -41,8 +42,14 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: '/addWord',
+      path: '/add-word',
       name: 'addWord',
+      component: AddWordView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/study',
+      name: 'studyCenter',
       component: AddWordView,
       meta: { requiresAuth: true },
     },
@@ -50,13 +57,15 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to) => {
-  const { data, error } = await supabase.auth.getSession()
-  console.log(data)
-  console.log(error)
+  const authStore = useAuthStore()
 
-  if (to.meta.requiresAuth && !data.session) {
+  if (authStore.isLoading) {
+    await authStore.initialize()
+  }
+
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     return '/login'
-  } else if (to.meta.public && data.session) {
+  } else if (authStore.isAuthenticated && to.meta.notViewableSignedIn) {
     return '/dashboard'
   }
 })

@@ -1,30 +1,35 @@
 <script setup lang="ts">
-import AddWord from '@/components/AddWord.vue'
-import Navigation from '@/components/Navigation.vue'
-import WordOfTheDay from '@/components/WordOfTheDay.vue'
+import FooterNavigation from '@/components/common/FooterNavigation.vue'
+import Logo from '@/components/common/Logo.vue'
+import Words from '@/components/Words.vue'
 import { supabase } from '@/lib/supabaseClient'
-import router from '@/router'
-import { ref } from 'vue'
+import { useWordStore } from '@/stores/wordsStore'
+import { onMounted, ref } from 'vue'
+
+const wordStore = useWordStore()
 
 async function signOut() {
   const { error } = await supabase.auth.signOut()
 }
-
 const newVocabWord = ref<string>('')
+
+onMounted(() => {
+  wordStore.fetchWords()
+  console.log(wordStore.wordResponse)
+})
 </script>
 
 <template>
   <div class="container">
-    <header>
-      <h1 class="logo-blue">myWordVault</h1>
-    </header>
+    <Logo />
     <main>
-      <!-- <AddWord /> -->
-      <Navigation />
       <input type="text" />
-      <WordOfTheDay />
-      <!-- <RouterLink to="/newPage">Next</RouterLink> -->
-      <button @click="signOut">Sign out</button>
+
+      <Words :list-of-words="wordStore.wordResponse.words" />
+
+      <!-- <button @click="signOut">Sign out</button> -->
+
+      <FooterNavigation />
     </main>
   </div>
 </template>
@@ -33,10 +38,6 @@ const newVocabWord = ref<string>('')
 .container {
   padding-top: 2.2rem;
   overflow-x: hidden;
-}
-header {
-  text-align: center;
-  margin-bottom: 2.2rem;
 }
 
 main {
@@ -52,12 +53,16 @@ input {
   border-radius: 16px;
   background: none;
   color: var(--dark-secondary);
-  margin-bottom: 4.8rem;
+  margin-bottom: 3.2rem;
 }
 input:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 2px rgba(0, 53, 102, 0.2);
+}
+
+.word {
+  margin-bottom: 2.2rem;
 }
 
 @media (min-width: 1024px) {

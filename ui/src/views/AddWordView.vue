@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import FooterNavigation from '@/components/common/FooterNavigation.vue'
 import router from '@/router'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -75,6 +76,7 @@ function getAvailablePartsOfSpeech(wordMeanings: Meaning[] | undefined): string[
     <!-- <p>{{ dictionaryApiData?.at(0)?.meanings?.at(0)?.partOfSpeech }}</p> -->
     <!-- </div> -->
   </form>
+  <FooterNavigation />
 </template>
 
 <style lang="css" scoped>
