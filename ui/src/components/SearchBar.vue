@@ -114,7 +114,7 @@ form {
 .search-input::placeholder,
 .bi-search,
 .bi-x-lg {
-  font-weight: 700;
+  font-weight: 600;
   color: rgba(0, 0, 0, 0.25);
 }
 

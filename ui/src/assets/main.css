@@ -84,10 +84,22 @@ label {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.auth-header {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2.4rem;
+}
+
+.auth-header > img {
+  box-sizing: border-box;
+  width: 4.8rem;
+}
+
 .auth-page-logo {
   text-align: center;
   font-size: 3.2rem;
-  margin-bottom: 2.4rem;
   font-weight: 700;
   letter-spacing: 0.5px;
 }

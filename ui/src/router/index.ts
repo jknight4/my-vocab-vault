@@ -6,6 +6,8 @@ import DashboardView from '@/views/DashboardView.vue'
 import { supabase } from '@/lib/supabaseClient'
 import AddWordView from '@/views/AddWordView.vue'
 import { useAuthStore } from '@/stores/authStore'
+import SettingsView from '@/views/SettingsView.vue'
+import HelpView from '@/views/HelpView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +46,18 @@ const router = createRouter({
       path: '/study',
       name: 'studyCenter',
       component: AddWordView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: SettingsView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/help',
+      name: 'help',
+      component: HelpView,
       meta: { requiresAuth: true },
     },
   ],

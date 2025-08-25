@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { supabase } from '@/lib/supabaseClient'
 import router from '@/router'
+import logo from '@/assets/images/mwv-logo-white.png'
 
 const PWD_MIN_LENGTH: number = 8
 const PWD_MAX_LENGTH: number = 32
@@ -38,7 +39,9 @@ async function createUser() {
 <template>
   <main class="user-main-container">
     <div class="auth-container">
-      <h1 class="auth-page-logo">myWordVault</h1>
+      <header class="auth-header">
+        <h1 class="auth-page-logo">myWordVault</h1>
+      </header>
       <form class="user-form" @submit.prevent="createUser">
         <h2>Sign Up</h2>
         <div class="user-form-inputs">
