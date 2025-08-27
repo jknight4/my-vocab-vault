@@ -28,7 +28,7 @@ supabase.auth.onAuthStateChange(async (event) => {
       router.push('/login')
     }
   } else if (event === 'SIGNED_IN') {
-    router.push('/dashboard')
+    // router.push('/dashboard')
   }
 })
 

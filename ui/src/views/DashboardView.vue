@@ -44,12 +44,6 @@ const mutatedWords = useFilteredWords(
 </template>
 
 <style lang="css" scoped>
-.container {
-  padding-top: 2.2rem;
-  display: flex;
-  flex-direction: column;
-}
-
 main {
   min-height: 100vh;
 }

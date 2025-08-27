@@ -13,6 +13,12 @@ body {
   font-size: 1.8rem;
 }
 
+.container {
+  padding-top: 2.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
 h1,
 h2,
 h3,
@@ -33,6 +39,12 @@ h4 {
   letter-spacing: 0.5px;
 }
 
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 .btn {
   padding: 1.4rem;
   border-radius: 8px;
@@ -44,6 +56,16 @@ h4 {
   transition: all 0.5s ease;
 }
 
+.cta-btn {
+  border-radius: 64px;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.cta-btn:hover {
+  background-color: var(--dark-cta);
+}
+
 .btn-blue {
   background-color: var(--primary-light-text);
 }
@@ -52,13 +74,38 @@ h4 {
   background-color: var(--primary);
   color: white;
 }
+
 /*  FORMS  */
 
 label {
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--primary-text);
 }
 
+input,
+textarea {
+  padding: 1.2rem 1.6rem;
+  border: 1px solid var(--light-secondary);
+  border-radius: 8px;
+
+  font-family: inherit;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  color: var(--primary-text);
+}
+
+textarea {
+  resize: none;
+  field-sizing: content;
+  max-height: calc(4lh + 2 * 12px);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 2px solid var(--dark-cta);
+}
 .error-message {
   color: var(--warning);
 }
@@ -123,7 +170,7 @@ label {
   gap: 0.8rem;
 }
 
-input {
+/* input {
   padding: 1.2rem 1.6rem;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -136,8 +183,8 @@ input {
 input:focus {
   outline: none;
   border-color: var(--cta);
-  box-shadow: 0 0 0 2px rgba(255, 214, 10, 0.2);
-}
+  box-shadow: 0 0 0 2px rgba(255, 214, 10, 0.2); */
+/* } */
 
 .user-form-submit-btn {
   width: 100%;

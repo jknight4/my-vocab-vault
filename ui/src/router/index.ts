@@ -4,7 +4,7 @@ import SignupView from '@/views/auth/SignupView.vue'
 import LoginView from '@/views/auth/LoginView.vue'
 import DashboardView from '@/views/DashboardView.vue'
 import { supabase } from '@/lib/supabaseClient'
-import AddWordView from '@/views/AddWordView.vue'
+import AddWordView from '@/views/AddWordFormView.vue'
 import { useAuthStore } from '@/stores/authStore'
 import SettingsView from '@/views/SettingsView.vue'
 import HelpView from '@/views/HelpView.vue'
@@ -46,7 +46,7 @@ const router = createRouter({
       path: '/study',
       name: 'studyCenter',
       component: AddWordView,
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: false },
     },
     {
       path: '/settings',
