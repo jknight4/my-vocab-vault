@@ -4,7 +4,6 @@ import Logo from '@/components/common/Logo.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import Words from '@/components/Words.vue'
 import { useFilteredWords } from '@/composables/useFilteredWords'
-import { supabase } from '@/lib/supabaseClient'
 import { useWordStore } from '@/stores/wordsStore'
 import { computed, onMounted, ref } from 'vue'
 

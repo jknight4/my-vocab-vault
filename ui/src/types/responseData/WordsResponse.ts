@@ -1,4 +1,6 @@
-import type { Word } from './Word'
+import type { Word } from "../Word"
+
+
 
 export interface WordsResponse {
   numberOfWords: number

@@ -4,10 +4,11 @@ import SignupView from '@/views/auth/SignupView.vue'
 import LoginView from '@/views/auth/LoginView.vue'
 import DashboardView from '@/views/DashboardView.vue'
 import { supabase } from '@/lib/supabaseClient'
-import AddWordView from '@/views/AddWordFormView.vue'
+import AddWordView from '@/views/words/AddWordFormView.vue'
 import { useAuthStore } from '@/stores/authStore'
 import SettingsView from '@/views/SettingsView.vue'
 import HelpView from '@/views/HelpView.vue'
+import WordView from '@/views/words/WordView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,6 +59,12 @@ const router = createRouter({
       path: '/help',
       name: 'help',
       component: HelpView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/word/:word',
+      name: 'word',
+      component: WordView,
       meta: { requiresAuth: true },
     },
   ],

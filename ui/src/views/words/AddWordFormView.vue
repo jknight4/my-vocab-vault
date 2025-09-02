@@ -4,6 +4,7 @@ import PartsOfSpeech from '@/components/form/PartsOfSpeech.vue'
 import Tags from '@/components/form/Tags.vue'
 import WordUsage from '@/components/form/WordUsage.vue'
 import router from '@/router'
+import { useWordStore } from '@/stores/wordsStore'
 import type { CreateWordRequestData } from '@/types/CreateWordRequestData'
 import { ref } from 'vue'
 
@@ -13,12 +14,14 @@ function back() {
 
 function handleExampleSentences(examples: string[]) {
   wordFormData.value.examples = examples
-  console.log('example sentences: ', examples)
 }
 
 function handlePartOfSpeech(partOfSpeech: string) {
   wordFormData.value.partsOfSpeech = partOfSpeech
-  console.log('part of speech: ', partOfSpeech)
+}
+
+function handleTags(tags: string[]) {
+  wordFormData.value.tags = tags
 }
 
 const defaultWordFormData: CreateWordRequestData = {
@@ -31,8 +34,12 @@ const defaultWordFormData: CreateWordRequestData = {
 
 const wordFormData = ref({ ...defaultWordFormData })
 
+const wordStore = useWordStore()
+
 function submitForm() {
   console.log('payload: ', wordFormData.value)
+  wordStore.createWord(wordFormData.value)
+  router.push('/dashboard')
 }
 </script>
 
@@ -64,7 +71,7 @@ function submitForm() {
 
         <WordUsage @get-examples="handleExampleSentences" />
 
-        <Tags />
+        <Tags @get-tags="handleTags" />
 
         <div>
           <button @click.prevent="submitForm" class="btn cta-btn">SAVE</button>

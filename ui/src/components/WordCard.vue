@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <RouterLink to="/">
+  <RouterLink :to="{ path: `/word/${word.word.toLowerCase()}` }">
     <article class="word-card">
       <h3>
         {{ word.word.toLocaleLowerCase() }}

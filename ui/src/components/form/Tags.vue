@@ -4,13 +4,19 @@ import { ref } from 'vue'
 const tag = ref('')
 const tags = ref<string[]>([])
 
+const emit = defineEmits<{
+  (e: 'getTags', tags: string[]): void
+}>()
+
 function addTag() {
   tags.value.push(tag.value)
   tag.value = ''
+  emit('getTags', [...tags.value])
 }
 
 function removeTag(index: number) {
   tags.value.splice(index, 1)
+  emit('getTags', [...tags.value])
 }
 </script>
 
@@ -63,9 +69,9 @@ section > p {
 }
 
 .tags-input {
-  padding: 0 1.6rem;
+  padding: 0 0.8rem;
   font-size: 1.5rem;
-  min-height: 4rem;
+  min-height: 3.2rem;
   cursor: text;
   outline: none;
   background: none;
@@ -74,7 +80,7 @@ section > p {
 
 .tag-div {
   border-radius: 8px;
-  padding: 0.8rem 1.2rem;
+  padding: 0.4rem 1.2rem;
   background-color: var(--light-gray);
 
   display: flex;
