@@ -1,4 +1,3 @@
-
 import type { MeaningResponse } from './MeaningResponse'
 
 export interface SingleWordApiResponse {

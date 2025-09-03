@@ -1,4 +1,3 @@
-
 import { defineStore } from 'pinia'
 import type { Word } from '@/types/Word'
 import { useAuthStore } from './authStore'
@@ -47,7 +46,7 @@ export const useWordStore = defineStore('word', {
       const token = authStore.getToken
 
       try {
-        const response = await fetch('http://localhost:8080/api/word-management/word', {
+        await fetch('http://localhost:8080/api/word-management/word', {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -79,6 +78,22 @@ export const useWordStore = defineStore('word', {
       } catch (error) {
         console.error('Error fetching')
       }
+    },
+    async deleteWord(word: string) {
+      const authStore = useAuthStore()
+      const token = authStore.getToken
+
+      try {
+        await fetch(`http://localhost:8080/api/word-management/word/${word}`, {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+      } catch (error) {
+        console.error('Error fetching')
+      }
+      await this.fetchWords()
     },
   },
 })
